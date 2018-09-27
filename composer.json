@@ -1,0 +1,21 @@
+{
+    "name": "grobmeier/wanikani2anki",
+    "description": "Exports WaniKani to Anki",
+    "type": "project",
+    "require": {
+        "guzzlehttp/guzzle": "^6.3",
+        "symfony/console": "^4.1",
+        "league/csv": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Grobmeier\\WaniKani\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Christian Grobmeier",
+            "email": "cg@grobmeier.de"
+        }
+    ]
+}

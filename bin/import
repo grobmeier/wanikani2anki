@@ -1,0 +1,24 @@
+#!/usr/bin/env php
+<?php
+use Grobmeier\WaniKani\ExportKanji;
+use Grobmeier\WaniKani\ExportLeeches;
+use Grobmeier\WaniKani\Init;
+use Symfony\Component\Console\Application;
+
+require __DIR__ . "/../vendor/autoload.php";
+
+$configuration = [
+    'wanikani' => 'https://api.wanikani.com/',
+    'version' => 'v2',
+    'key_file' => 'api-key.txt'
+];
+
+if (file_exists($configuration['key_file'])) {
+    $configuration['api_key'] = file_get_contents($configuration['key_file']);
+}
+
+$application = new Application();
+$application->add(new Init($configuration));
+$application->add(new ExportKanji($configuration));
+$application->add(new ExportLeeches($configuration));
+$application->run();
