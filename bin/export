@@ -1,5 +1,7 @@
 #!/usr/bin/env php
 <?php
+
+use Grobmeier\WaniKani\ExportApprentice;
 use Grobmeier\WaniKani\ExportKanji;
 use Grobmeier\WaniKani\ExportLeeches;
 use Grobmeier\WaniKani\Init;
@@ -21,4 +23,5 @@ $application = new Application();
 $application->add(new Init($configuration));
 $application->add(new ExportKanji($configuration));
 $application->add(new ExportLeeches($configuration));
+$application->add(new ExportApprentice($configuration));
 $application->run();
