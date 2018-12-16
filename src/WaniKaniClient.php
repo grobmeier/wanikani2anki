@@ -32,11 +32,23 @@ class WaniKaniClient
         ]);
     }
 
-    public function readSubjects($ids) {
+    public function readApprenticeItems() {
+        $response = $this->client->get($this->configuration['version'] . '/assignments?srs_stages=1,2,3,4');
+        $result = \GuzzleHttp\json_decode($response->getBody());
+
+        $resultIds = [];
+        foreach ($result->data as $item) {
+            $resultIds[] = ['subject_id' => $item->data->subject_id];
+        }
+
+        return $resultIds;
+    }
+
+    public function readSubjects($fileName, $ids) {
         $response = $this->client->get($this->configuration['version'] . '/subjects?ids=' . implode(',', $ids));
         $result = \GuzzleHttp\json_decode($response->getBody());
 
-        $writer = Writer::createFromPath('leeches.csv', 'w+');
+        $writer = Writer::createFromPath($fileName, 'w+');
         $cardGenerator = new CardGenerator();
 
         foreach ($result->data as $item) {

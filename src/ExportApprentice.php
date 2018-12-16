@@ -5,7 +5,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class ExportLeeches extends Command
+class ExportApprentice extends Command
 {
     private $configuration;
 
@@ -18,20 +18,19 @@ class ExportLeeches extends Command
     protected function configure()
     {
         $this
-            ->setName('leeches')
-            ->setDescription('Exports Leeches to an Anki readable file');
+            ->setName('apprentice')
+            ->setDescription('Exports apprentice items to an Anki readable file');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $client = new WaniKaniClient($output, $this->configuration);
-        $result = $client->readLeeches();
+        $result = $client->readApprenticeItems();
 
         $subjectIds = array_map(function($element) {
-           return $element['subject_id'];
+            return $element['subject_id'];
         }, $result);
 
-        $client->readSubjects('leeches.csv', $subjectIds);
-
+        $client->readSubjects('apprentice.csv', $subjectIds);
     }
 }
