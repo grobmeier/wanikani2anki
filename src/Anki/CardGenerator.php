@@ -16,7 +16,7 @@ class CardGenerator
 
     public function createVocabularyCard($vocab) {
         $card = new Card();
-        $card->question = '<div style="font-size: 40px;">' .
+        $card->question = '<div>Vocab</div><br/><br/><div style="font-size: 40px;">' .
             $vocab->data->characters .
         '</div>';
 
@@ -37,7 +37,7 @@ class CardGenerator
 
     public function createRadicalCard($radical) {
         $card = new Card();
-        $card->question = '<div style="font-size: 40px;">' .
+        $card->question = '<div>Radical</div><br/><br/><div style="font-size: 40px;">' .
             $radical->data->characters .
             '</div>';
 
@@ -73,7 +73,7 @@ class CardGenerator
         }
 
         $card->question =
-            '<div style="font-size: 40px;">' .
+            '<div>Kanji</div><br/><br/><div style="font-size: 40px;">' .
                 $kanji->data->characters .
             '</div>';
 
